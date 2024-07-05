@@ -11,5 +11,5 @@ class arteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Arte    
-        fields = ('id','artista','nom_arte','imagen_url','precio','desc','tec_usada','etiquetas','aprobado','vendido')
+        fields = ('id','nom_arte','imagen_url','precio','desc','tec_usada','etiquetas','aprobado','vendido')
         

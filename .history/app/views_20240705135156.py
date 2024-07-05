@@ -85,7 +85,7 @@ def update_arte(request, arte_id):
     except Arte.DoesNotExist:
         return Response({'error': 'Arte no encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
-    if request.user != arte.artista and request.user.is_staff == False:
+    if request.user != arte.artista && request.user.is_staff == False:
         return Response({'error': 'No tienes permiso para editar este arte'}, status=status.HTTP_403_FORBIDDEN)
 
     serializer = arteSerializer(arte, data=request.data, partial=True)

@@ -11,5 +11,5 @@ class usuarioViewSet(viewsets.ModelViewSet):
 class arteViewSet(viewsets.ModelViewSet):
     queryset = Arte.objects.all()
     permissions_classes = [permissions.AllowAny]
-    serializer_class = arteSerializer
+    serializer_class = usuarioSerializer
     http_method_names = ['get', 'post', 'head','put','delete']

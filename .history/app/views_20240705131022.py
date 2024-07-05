@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import usuarioSerializer, arteSerializer
-from .models import Usuario, Arte
+from .models import Usuario
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -64,32 +64,6 @@ def post_arte(request):
 @api_view(['GET'])
 def get_arte(request):
     artes = Arte.objects.all()
-    serializer = arteSerializer(artes, many=True)
+    serializer = ArteSerializer(artes, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
-
-@api_view(['DELETE'])
-def delete_arte(request,arte_id):
-    try:
-        arte = Arte.objects.get(id=arte_id)
-    except Arte.DoesNotExist:
-        return Response({'error': 'Arte no encontrado'}, status=status.HTTP_404_NOT_FOUND)
-    arte.delete()
-    return Response({'message': 'Arte eliminado correctamente'}, status=status.HTTP_204_NO_CONTENT)
-
-@api_view(['PUT'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def update_arte(request, arte_id):
-    try:
-        arte = Arte.objects.get(id=arte_id)
-    except Arte.DoesNotExist:
-        return Response({'error': 'Arte no encontrado'}, status=status.HTTP_404_NOT_FOUND)
-
-    if request.user != arte.artista and request.user.is_staff == False:
-        return Response({'error': 'No tienes permiso para editar este arte'}, status=status.HTTP_403_FORBIDDEN)
-
-    serializer = arteSerializer(arte, data=request.data, partial=True)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
