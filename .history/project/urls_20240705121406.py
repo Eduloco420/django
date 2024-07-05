@@ -23,9 +23,6 @@ urlpatterns = [
     re_path('login', views.login),
     re_path('register', views.register),
     re_path('profile', views.profile),
-    re_path('post_arte', views.post_arte),
-    re_path('get_arte', views.get_arte),
-    path('delete_arte/<int:arte_id>/', views.delete_arte),
-    path('update_arte/<int:arte_id>/', views.update_arte),
+    re_path('subir_arte', views.arte),
     path('', include('app.urls'))
 ]

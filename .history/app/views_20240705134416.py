@@ -80,15 +80,16 @@ def delete_arte(request,arte_id):
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def update_arte(request, arte_id):
+    print(request.user.is_staff)
     try:
         arte = Arte.objects.get(id=arte_id)
     except Arte.DoesNotExist:
         return Response({'error': 'Arte no encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
-    if request.user != arte.artista and request.user.is_staff == False:
+    if request.user != arte.artista:
         return Response({'error': 'No tienes permiso para editar este arte'}, status=status.HTTP_403_FORBIDDEN)
 
-    serializer = arteSerializer(arte, data=request.data, partial=True)
+    serializer = ArteSerializer(arte, data=request.data, partial=True)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
