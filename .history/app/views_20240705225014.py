@@ -63,8 +63,8 @@ def post_arte(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def get_arte(request, artista_id):
-    artes = Arte.objects.filter(artista=artista_id)
+def get_arte(request):
+    artes = Arte.objects.all()
     serializer = arteSerializer(artes, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -64,14 +64,14 @@ def post_arte(request):
 
 @api_view(['GET'])
 def get_arte(request, artista_id):
-    artes = Arte.objects.filter(artista=artista_id)
+    artes = Arte.objects.get(artista=artista_id)
     serializer = arteSerializer(artes, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['DELETE'])
-def delete_arte(request,arte_id):
+def delete_arte(request,artista_id):
     try:
-        arte = Arte.objects.get(id=arte_id)
+        arte = Arte.objects.get(id=artista_id)
     except Arte.DoesNotExist:
         return Response({'error': 'Arte no encontrado'}, status=status.HTTP_404_NOT_FOUND)
     arte.delete()
