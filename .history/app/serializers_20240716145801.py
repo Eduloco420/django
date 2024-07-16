@@ -10,9 +10,15 @@ class arteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Arte    
         fields = ('id','artista','nom_arte','imagen_url','precio','desc','tec_usada','etiquetas','aprobado','vendido')
-
-class carritoSerilizer(serializers.ModelSerializer):
+        
+class carritoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Carrito
-        fields = ('id', 'usuario', 'arte')
+        fields = ('id','usuario')
+
+class Det_carritoSerilizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Det_carrito
+        fields = ('id', 'carrito', 'arte')

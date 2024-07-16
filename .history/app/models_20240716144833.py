@@ -28,6 +28,7 @@ class CustomUserManager(UserManager):
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(default='', unique = True)
+    
     nom = models.CharField(max_length=50, blank = True, null = True)
     ap_pat = models.CharField(max_length=50, blank = True, null = True)
     password = models.CharField(max_length=255)
@@ -36,8 +37,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(null=True, blank=True)
+
 
     objects = CustomUserManager()
 
@@ -68,5 +71,7 @@ class Arte(models.Model):
 
 class Carrito(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    arte = models.ForeignKey(Arte, on_delete=models.CASCADE)
     
+class Det_carrito(models.Model):
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
+    arte = models.ForeignKey(Arte, on_delete=models.CASCADE)

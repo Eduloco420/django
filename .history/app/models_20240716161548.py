@@ -69,4 +69,3 @@ class Arte(models.Model):
 class Carrito(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     arte = models.ForeignKey(Arte, on_delete=models.CASCADE)
-    
