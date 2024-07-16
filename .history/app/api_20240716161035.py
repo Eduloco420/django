@@ -13,8 +13,8 @@ class arteViewSet(viewsets.ModelViewSet):
     permissions_classes = [permissions.AllowAny]
     serializer_class = arteSerializer
     http_method_names = ['get', 'post', 'head','put','delete']
-class CarritoViewSet(viewsets.ModelViewSet):
-    queryset = Carrito.objects.all()
+class detCarritoViewSet(viewsets.ModelViewSet):
+    queryset = Det_carrito.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = carritoSerilizer    
+    serializer_class = Det_carritoSerilizer    
     http_method_names = ['get', 'post', 'head','put','delete']
