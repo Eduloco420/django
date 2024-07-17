@@ -1,0 +1,19 @@
+
+A través de postman se puede:
+- Registrar usuario
+- Login
+- Crear obra
+- Leer obras, todas y por artista
+- Actualizar y eliminar obras
+
+Todo lo anterior no se puede a través de la web
+
+Carrito:
+    - Falta el detalle del modelo del carrito, para el CRUD de compras
+
+No se conecta el front con el back ni se traspasa el proyecto del front al mismo proyecto de Django
+
+ - Al crear un nuevo arte este debe aparecer en el carrusel
+ - Al logear un usuario este debe poder subir un arte, por lo tanto el botón para subir arte solo aparece con un usuario logeado
+- tanto el login como el registro no redirigen a niguna parte
+
